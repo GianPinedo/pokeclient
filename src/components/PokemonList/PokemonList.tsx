@@ -5,6 +5,7 @@ import PokemonCard from '../PokemonCard/PokemonCard';
 import PokemonFilters from '../PokemonFilters/PokemonFilters';
 import AddPokemonModal from '../AddPokemonModal/AddPokemonModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAuth } from '../../context/AuthContext';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Pokemon, NewPokemon } from '../../types';
 
@@ -13,7 +14,7 @@ const PokemonList: React.FC = () => {
   const [filteredPokemons, setFilteredPokemons] = useState<Pokemon[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const { user, logout } = useAuth();
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
@@ -54,8 +55,14 @@ const PokemonList: React.FC = () => {
     <div className="container">
       <div className="header">
         <h1 className="title">Pokémon List</h1>
-        <button className="add-button" onClick={() => setIsModalOpen(true)}>
-        <FontAwesomeIcon icon={faPlus} /> Add Pokémon</button>
+        {user ? (
+          <>
+           <button className="add-button" onClick={() => setIsModalOpen(true)}>
+           <FontAwesomeIcon icon={faPlus} /> Add Pokémon</button>
+          </>) : (
+            <></>
+          )}
+       
       </div>
       <PokemonFilters onFilterChange={handleFilterChange} />
       {error && <div className="error">{error}</div>}

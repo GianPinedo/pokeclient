@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const getPokemons = async () => {
   try {
-    const response = await api.get('/pokemon');
+    const response = await api.get('/pokemon?type=0&ability=0&gender=0');
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

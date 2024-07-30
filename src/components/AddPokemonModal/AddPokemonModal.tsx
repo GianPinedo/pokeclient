@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { Box, Button, TextField, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { default as ReactSelect, MultiValue } from 'react-select';
 import './AddPokemonModal.css';
 import { NewPokemon } from '../../types';
 
@@ -10,11 +11,24 @@ interface Props {
   onAddPokemon: (pokemon: NewPokemon) => void;
 }
 
+const abilityOptions = [
+  { value: 'Static', label: 'Static' },
+  { value: 'Blaze', label: 'Blaze' },
+  { value: 'Overgrow', label: 'Overgrow' },
+  { value: 'Torrent', label: 'Torrent' },
+  { value: 'Cute Charm', label: 'Cute Charm' },
+  { value: 'Pickup', label: 'Pickup' },
+  { value: 'Damp', label: 'Damp' },
+  { value: 'Immunity', label: 'Immunity' },
+  { value: 'Run Away', label: 'Run Away' },
+  { value: 'Levitate', label: 'Levitate' }
+];
+
 const AddPokemonModal: React.FC<Props> = ({ isOpen, onRequestClose, onAddPokemon }) => {
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [type, setType] = useState('');
-  const [abilities, setAbilities] = useState('');
+  const [abilities, setAbilities] = useState<MultiValue<{ value: string; label: string }>>([]);
   const [weight, setWeight] = useState('');
   const [weaknesses, setWeaknesses] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -25,7 +39,7 @@ const AddPokemonModal: React.FC<Props> = ({ isOpen, onRequestClose, onAddPokemon
       name,
       gender,
       type,
-      abilities,
+      abilities: abilities.map(a => a.value).join('/'),
       weight: parseFloat(weight),
       weaknesses,
       imageUrl
@@ -59,22 +73,34 @@ const AddPokemonModal: React.FC<Props> = ({ isOpen, onRequestClose, onAddPokemon
               <MenuItem value="Female">Female</MenuItem>
             </Select>
           </FormControl>
-          <TextField
-            label="Type"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            fullWidth
-            margin="normal"
-            required
-          />
-          <TextField
-            label="Abilities"
-            value={abilities}
-            onChange={(e) => setAbilities(e.target.value)}
-            fullWidth
-            margin="normal"
-            required
-          />
+          <FormControl fullWidth margin="normal" required>
+            <InputLabel>Type</InputLabel>
+            <Select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              label="Type"
+            >
+              <MenuItem value="Electric">Electric</MenuItem>
+              <MenuItem value="Fire">Fire</MenuItem>
+              <MenuItem value="Grass">Grass</MenuItem>
+              <MenuItem value="Water">Water</MenuItem>
+              <MenuItem value="Normal">Normal</MenuItem>
+              <MenuItem value="Ghost">Ghost</MenuItem>
+              <MenuItem value="Poison">Poison</MenuItem>
+            </Select>
+          </FormControl>
+          <Box mt={2}>
+            <Typography variant="body1" gutterBottom>
+              Abilities
+            </Typography>
+            <ReactSelect
+              isMulti
+              value={abilities}
+              onChange={(selected) => setAbilities(selected)}
+              options={abilityOptions}
+              className="react-select"
+            />
+          </Box>
           <TextField
             label="Weight"
             type="number"

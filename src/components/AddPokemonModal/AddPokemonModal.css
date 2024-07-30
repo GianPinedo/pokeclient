@@ -37,7 +37,6 @@
   .modal select {
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
     border-radius: 5px;
   }
   
@@ -68,5 +67,10 @@
   
   .modal {
     outline: none;
+  }
+
+  .react-select {
+    margin-top: 8px;
+    z-index: 1000;
   }
   

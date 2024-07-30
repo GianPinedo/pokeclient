@@ -1,20 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import PokemonList from './components/PokemonList/PokemonList';
+import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login/Login';
+import PokemonList from './components/PokemonList/PokemonList';
+
+import Navbar from './components/Navbar/Navbar';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="App">
+    <AuthProvider>
+      <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<PokemonList />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<PokemonList />} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 };
 

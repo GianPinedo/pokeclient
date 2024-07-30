@@ -62,33 +62,96 @@
   margin-top: 5px;
   text-transform: capitalize;
 }
-
 /* Colores fuertes para los tipos */
-.type-electric { background-color: #fcd601f1; }
-.type-fire { background-color: #ec4c12; }
-.type-grass { background-color: #32CD32; }
-.type-water { background-color: #1E90FF; }
-.type-normal { background-color: #A8A77A; }
-.type-ghost { background-color: #705898; }
-.type-poison { background-color: #A040A0; }
-.type-normal-fairy { background-color: #EE99AC; } /* Ejemplo para un tipo combinado */
-.type-default { background-color: #A9A9A9; } /* Color básico por defecto */
-/*for Ghost/Poison*/
-.type-ghost-poison { background-color: #261443; }
-/*for Grass/Poison*/
-.type-grass-poison { background-color: #2f5a19; }
+.type-electric { background-color: #FFD700; color: #000; }
+.type-fire { background-color: #FF4500; color: #FFF; }
+.type-grass { background-color: #32CD32; color: #FFF; }
+.type-water { background-color: #1E90FF; color: #FFF; }
+.type-normal { background-color: #A8A77A; color: #000; }
+.type-ghost { background-color: #705898; color: #FFF; }
+.type-poison { background-color: #A040A0; color: #FFF; }
+.type-normal-fairy { background-color: #EE99AC; color: #000; } /* Ejemplo para un tipo combinado */
+.type-default { background-color: #A9A9A9; color: #000; } /* Color básico por defecto */
+/* for Ghost/Poison */
+.type-ghost-poison { background-color: #261443; color: #FFF; }
+/* for Grass/Poison */
+.type-grass-poison { background-color: #2f5a19; color: #FFF; }
+/* for Flying */
+.type-flying { background-color: #A98FF3; color: #000; }
+/* for Ice */
+.type-ice { background-color: #98D8D8; color: #000; }
+/* for Psychic */
+.type-psychic { background-color: #F85888; color: #FFF; }
+/* for Fighting */
+.type-fighting { background-color: #C03028; color: #FFF; }
+/* for Dragon */
+.type-dragon { background-color: #7038F8; color: #FFF; }
+/* for Fairy */
+.type-fairy { background-color: #FFB6C1; color: #000; }
 
 /* Colores fuertes para el fondo de los cards */
-.card-electric { background-color: #FFC700; }
-.card-fire { background-color: #FF5733; }
-.card-grass { background-color: #28A745; }
-.card-water { background-color: #007BFF; }
-.card-normal { background-color: #868E96; }
-.card-ghost { background-color: #6F42C1; }
-.card-poison { background-color: #D63384; }
-.card-normal-fairy { background-color: #FFB6C1; } /* Ejemplo para un tipo combinado */
-.card-default { background-color: #B0B0B0; } /* Color básico por defecto */
-/*for Ghost/Poison*/
-.card-ghost-poison { background-color: #705898; }
-/*for Grass/Poison*/
-.card-grass-poison { background-color: #78C850; }
+.card-electric { background-color: #938e61; }
+.card-fire { background-color: #FFDAB9; }
+.card-grass { background-color: #98FB98; }
+.card-water { background-color: #B0E0E6; }
+.card-normal { background-color: #8a6868; }
+.card-ghost { background-color: #E6E6FA; }
+.card-poison { background-color: #DDA0DD; }
+.card-normal-fairy { background-color: #FFE4E1; } /* Ejemplo para un tipo combinado */
+.card-default { background-color: #D3D3D3; } /* Color básico por defecto */
+/* for Ghost/Poison */
+.card-ghost-poison { background-color: #9B30FF; }
+/* for Grass/Poison */
+.card-grass-poison { background-color: #9ACD32; }
+/* for Flying */
+.card-flying { background-color: #E0B0FF; }
+/* for Ice */
+.card-ice { background-color: #7fcccc; }
+/* for Psychic */
+.card-psychic { background-color: #FFB6C1; }
+/* for Fighting */
+.card-fighting { background-color: #FA8072; }
+/* for Dragon */
+.card-dragon { background-color: #9370DB; }
+/* for Fairy */
+.card-fairy { background-color: #FFE4E1; }
+/*for type type-default*/
+.card-default { background-color: #D3D3D3; }
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin: 5px 0;
+}
+
+.separator {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
