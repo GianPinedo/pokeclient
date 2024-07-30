@@ -1,0 +1,60 @@
+/* Estilos para el contenedor principal */
+.container {
+  background-color: #f9f9f9; /* Fondo diferente */
+  min-height: calc(100vh - 70px); /* Ajustar el tamaño para restar el alto del navbar */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif; /* Fuente para todo el documento */
+}
+
+/* Estilos para el encabezado */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para el título principal */
+.title {
+  text-align: center;
+  color: #100f0f;
+  font-size: 2.5em;
+  font-family: 'Open Sans', sans-serif; /* Fuente específica para el título */
+  margin: 0;
+}
+
+/* Estilos para el botón de agregar */
+.add-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la cuadrícula de tarjetas */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+.error {
+  color: red;
+  margin: 10px 0;
+  font-weight: bold;
+}
