@@ -18,4 +18,6 @@ export interface Pokemon {
     weaknesses: string;
     imageUrl: string;
   }
-  
+  export interface Pokemon extends NewPokemon {
+    id: number;
+  }

@@ -1,10 +1,18 @@
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Asegura que el nav-container esté centrado */
   align-items: center;
   padding: 1rem;
-  background-color: #007bff;
+  background-color: #092a4e;
   color: white;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-title {

@@ -1,7 +1,16 @@
 import axios from 'axios';
+import { NewPokemon, Pokemon } from '../types';
 
 const api = axios.create({
   baseURL: 'http://localhost:5227/api', 
+});
+
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 export const getPokemons = async () => {
@@ -30,4 +39,9 @@ export const getPokemons = async () => {
       throw new Error('Error inesperado');
     }
   }
+};
+
+export const addPokemon = async (pokemon: NewPokemon): Promise<Pokemon> => {
+  const response = await api.post('/Pokemon', pokemon);
+  return response.data;
 };

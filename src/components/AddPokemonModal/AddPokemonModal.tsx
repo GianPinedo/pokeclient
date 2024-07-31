@@ -4,6 +4,7 @@ import { Box, Button, TextField, Typography, MenuItem, Select, InputLabel, FormC
 import { default as ReactSelect, MultiValue } from 'react-select';
 import './AddPokemonModal.css';
 import { NewPokemon } from '../../types';
+import { addPokemon } from '../../services/pokemonService';
 
 interface Props {
   isOpen: boolean;
@@ -33,9 +34,9 @@ const AddPokemonModal: React.FC<Props> = ({ isOpen, onRequestClose, onAddPokemon
   const [weaknesses, setWeaknesses] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onAddPokemon({
+    const newPokemon: NewPokemon = {
       name,
       gender,
       type,
@@ -43,7 +44,13 @@ const AddPokemonModal: React.FC<Props> = ({ isOpen, onRequestClose, onAddPokemon
       weight: parseFloat(weight),
       weaknesses,
       imageUrl
-    });
+    };
+    try {
+      await addPokemon(newPokemon);
+      onAddPokemon(newPokemon);
+    } catch (error) {
+      console.error("Error adding Pokemon:", error);
+    }
     onRequestClose();
   };
 

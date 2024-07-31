@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getPokemons } from '../../services/pokemonService';
 import './PokemonList.css';
 import PokemonCard from '../PokemonCard/PokemonCard';
+import LoadingCard from '../LoadingCards/LoadingCards';
 import PokemonFilters from '../PokemonFilters/PokemonFilters';
 import AddPokemonModal from '../AddPokemonModal/AddPokemonModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,20 +15,28 @@ const PokemonList: React.FC = () => {
   const [filteredPokemons, setFilteredPokemons] = useState<Pokemon[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true); // Estado de carga
   const { user, logout } = useAuth();
+
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
+       
         const data = await getPokemons();
+        //esperar 2 segundos
+        await new Promise(resolve => setTimeout(resolve, 1500));//TODO: Solo para pruebas, eliminar en producción
         setPokemons(data);
         setFilteredPokemons(data);
         setError(null); // Reiniciar error en caso de éxito
+        
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message);
         } else {
           setError('Error desconocido');
         }
+      } finally {
+        setLoading(false); // Desactivar el estado de carga
       }
     };
 
@@ -62,14 +71,26 @@ const PokemonList: React.FC = () => {
           </>) : (
             <></>
           )}
-       
       </div>
       <PokemonFilters onFilterChange={handleFilterChange} />
       {error && <div className="error">{error}</div>}
       <div className="card-grid">
-        {filteredPokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
+        {loading ? (
+          <>
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+          </>
+        ) : (
+          filteredPokemons.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))
+        )}
       </div>
       <AddPokemonModal 
         isOpen={isModalOpen} 
